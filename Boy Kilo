@@ -1,0 +1,49 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Boyunuzu (cm) cinsinden giriniz: ");
+        double boy = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Kilonuzu (kg) cinsinden giriniz: ");
+        double kilo = Convert.ToDouble(Console.ReadLine());
+
+        double endeks = CalculateBMI(boy, kilo);
+
+        Console.WriteLine("Vücut Kitle İndeksiniz (BMI): " + endeks);
+        Console.WriteLine("Durumunuz: " + GetBMICategory(endeks));
+
+        Console.WriteLine("Çıkmak için bir tuşa basın...");
+        Console.ReadLine();
+    }
+
+    static double CalculateBMI(double boy, double kilo)
+    {
+        // Boyun karesine bölerek vücut kitle indeksini hesapla
+        double endeks = kilo / Math.Pow(boy / 100, 2);
+        return endeks;
+    }
+
+    static string GetBMICategory(double endeks)
+    {
+        // Vücut kitle indeksine göre bir kategori belirle
+        if (endeks < 18.5)
+        {
+            return "Zayıf";
+        }
+        else if (endeks < 25)
+        {
+            return "Normal";
+        }
+        else if (endeks < 30)
+        {
+            return "Fazla Kilolu";
+        }
+        else
+        {
+            return "Obez";
+        }
+    }
+}
